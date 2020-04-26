@@ -1,0 +1,47 @@
+A:
+
+Ako imamo set od 100 podataka..
+
+Random subsampling: 
+	Random deli izmesan niz od 100 podataka na dve grupe za treniranje i testiranje. Ovaj odnos moze biti 80:20, 70:30, 60:40.
+	Dobar za velike skupove podataka. Ako dobijamo slicne rezultate i optimalne parametre modela sa nekim od nasih iteracija.
+K-fold:
+	Delimo izmesan niz na k delova. Treniramo sa (k - 1) delova podataka, a testiramo na (k - 1)om delu.
+	Sledeci put ubacujemo deo koji nismo upotrebili u prosloj iteraciji i na njemu i testiramo.
+	Ponavljamo proces koji ce trajati k iteracija i bice k puta sporiji od random subsamapling-a.
+	Dobar za velike skupove podataka. Ako ne dobijamo slicne rezultate i drugacije optimalne parametre modela kada iteriramo.
+Leave-one-out:
+	Poseban slucaj k-fold deljenja podataka, gde za nas primer od 100 podataka delimo na 100 delova, treniramo model sa 99 objekata, a testiramo na 100-om.
+	Ovaj proces ponavljamo ostavljajuci jedan objekat svaki put. Ovo ce trajati 100 iteracija i biti 100 puta sporije od random subsampling-a.
+	Dobro za male skupove podataka, nebalansirane skupove podataka i ciljane vrednosti.
+
+B:
+
+Bernoulli Naive Bayes:
+	Pretpostavlja da su sve nase karakteristike binarne, tj da primaju dve vrednosti, 0 moze da predstavlja da se rec ne nalazi u fajlu, a 1 da predstavlja da se rec nalazi u fajlu.
+	Na primeru da li je mail spam ili ne, spam mailovi ce imati deo naseg maila u subjectu, pa takve mailove mozemo oznaciti sa 0, a ako ne postoji sa 1. 
+	Ovim cemo lako klasificirati mailove na spam mailove i druge.
+Multinomial Naive Bayes:
+	Na istom primeru spam mailova, mozemo primetiti da se povecanjem broja znakova '$' povecava i sansa da je mail spam.
+	Mozemo da prebrojimo ponavljanje za taj znak ili cele reci i time klasificiramo spam mailove od drugih.
+Gaussian Naive Bayes:
+	Ako za primer uzmemo mogucnost studenta da zakuca loptu na osnovu njegove visine, mi zelimo da nas algoritam povuce crtu na nekoj visini.
+	Na taj nacin mozemo da klasifikujemo studente koji mogu i ne mogu da zakucaju. 
+	Distribucija ljudske visine je kontinualna i ne mozemo da representujemo karakteristike podataka na osnovu broja ponavljanja, tako da se odlucujemo za gaussian naive bayes algoritam.
+
+C:
+
+Idea linearne separabilnosti je da proveri da li mozemo da podelimo tacke u n-dimenzionalnom prostoru koristeci samo n-1 dimenzija.
+
+Jedna dimenzija:
+	Na brojevnoj pravi uzmemo dve tacke. Ili su dve razlicite tacke, ili je jedna ista. Ako su razlicite, izmedju njih uvek postoji neki broj.
+	Ovaj broj ih deli, pa kazemo da su tacke linearno seperabilne. Ako uzmemo dve iste vrednosti, to je jedna tacka i ne mozemo da je podelimo. Ona nije linearno separabilna.
+Dve dimenzije:
+	Ako na koordinatnom sistemu zelimo da odvojimo tacku (1,1) od tacaka (0,0), (0,1), (1,0), to mozemo da uradimo sa beskonacno mnogo linija.
+	Ove dve klase tacaka su linearno seperabilne. Prva klasa sadrzi tacku (1,1), a druga tacke (0,0), (0,1), (1,0).
+Tri dimenzije:
+	Ako prosirimo primer na tri dimenzije, da bi odvojili teme kocke od ostalih temena, potrebna nam je ravan, pa su temena linearno seperabilna.
+	U slucaju da zelimo da odvojimo i teme suprotno od naseg prvobitnog temena, to ne bi bilo moguce, pa bi temena bila linearno neseperabilna.
+Da li su podaci iz iris.csv linearno seperabilni?
+	Skup podataka sadrzi 3 vrste cveta. Jedna vrsta je linearno seperabilna od druge dve, ali druge dve vrste nisu linearno seperabilne izmedju sebe.
+	Ovo se najlakse primecuje na 2d grafiku duzine i sirine listica casica.
